@@ -1,12 +1,16 @@
-# DASFAA2023 486
+# DASFAA2023 463
 
 This is the official implementation of the submission *Few-shot Link Prediction for Event-based Social Networks via Meta-learning*.
 
 #### Requirements
 pytorch=1.8.0
+
 dgl-cu102=0.6.1
+
 prettytable
+
 scikit-learn
+
 pandas
 
 #### Datasets
