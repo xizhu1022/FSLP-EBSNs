@@ -100,7 +100,7 @@ class EncoderDecoder(nn.Module):
         return loss
 
     def compute_loss(self, tgt_event, triplets, scores, labels, vars):
-        # 计算主要损失、辅助损失、L2损失
+
         if self.args.binary:
             tgt_event_idx = 1
         else:
