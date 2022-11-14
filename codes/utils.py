@@ -52,7 +52,7 @@ def load_dataset(args):
     t0 = time.time()
     path = os.path.join(args.data_dir, args.dataset, 'fold_{}'.format(str(args.fold)))
 
-    idx2event = dict()  # 读取事件的ID字典
+    idx2event = dict()
     with open(os.path.join(path, 'dict.csv'), 'r') as f:
         reader = csv.DictReader(f)
         for row in reader:
@@ -61,10 +61,9 @@ def load_dataset(args):
     args.idx2event = idx2event
     args.event2idx = event2idx
 
-    # 依次处理各个数据文件
     table = PrettyTable(['Index', 'Graph', '# Nodes', '# Edges', 'Avg Degree', '% Nodes', 'Type'])
     all_df = None
-    max_num_nodes = 0  # 全局节点数
+    max_num_nodes = 0
     split2event = dict()
     event2link = dict()
 
@@ -94,7 +93,6 @@ def load_dataset(args):
         for event in events:
             event2split[event] = split
 
-    # 数据统计
     for idx, (event, (src, dst)) in enumerate(event2link.items()):
         n_nodes = len(set(dst.tolist()) | set(src.tolist()))
         n_links = len(src)
@@ -108,7 +106,6 @@ def load_dataset(args):
     table.add_row(['All', 'global', max_num_nodes, max_n_link_all, max_n_link_all / max_num_nodes, 1.0, 'all'])
     logger.info('\n'+str(table))
 
-    # 转换为异质图
     src_list = []
     dst_list = []
     rel_list = []

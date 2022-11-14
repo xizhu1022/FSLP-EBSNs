@@ -50,7 +50,6 @@ class MetaLearning(nn.Module):
         trainable_params_stats(self.model)
 
     def run(self, train_loader, test_loader):
-        # 执行函数
         save_path = '{}/checkpoint_{}.pt'.format(self.args.ckpt_dir, self.args.save_postfix)
         start = time.time()
         early_stopping = EarlyStopping(patience=self.args.patience, verbose=True, metrics=self.args.metrics,
@@ -300,13 +299,13 @@ class MetaLearning(nn.Module):
 
         for k in range(0, update_step + 1):
             model.train()
-            # 采样
+
             _support_triplets, _support_labels = get_pos_neg_triplets(args=self.args, mode='support',
                                                                       triplets=_support_pos_triplets,
                                                                       tgt_event_idx=_tgt_event_idx)
             _support_triplets, _support_labels = _support_triplets.to(self.device), _support_labels.to(
                 self.device)
-            # 训练
+
             support_loss, support_loss_dict, support_tgt_scores, support_tgt_labels = model(input_graphs=_input_graph,
                                                                                             feature_graphs=_tgt_graph,
                                                                                             triplets=_support_triplets,

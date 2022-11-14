@@ -173,7 +173,7 @@ def get_subgraph_by_mask(g, mask, to_bidirect=False):
 
     if to_bidirect:
         sub_src, sub_dst = torch.cat([sub_src, sub_dst]), torch.cat([sub_dst, sub_src])
-        sub_rel = torch.cat([sub_rel, sub_rel])  # + num_rels
+        sub_rel = torch.cat([sub_rel, sub_rel])
 
     sub_g = dgl.graph((sub_src, sub_dst), num_nodes=g.num_nodes())
     sub_g.edata['etype'] = sub_rel

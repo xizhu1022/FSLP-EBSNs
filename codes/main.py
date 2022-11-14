@@ -87,7 +87,7 @@ if __name__ == '__main__':
     argparser.add_argument('--reg_param', type=float, default=0.01, help='Regularization param')
     argparser.add_argument('--encoder', type=str, default='hgb', help='Choose from hgb/gat')
     argparser.add_argument('--decoder', type=str, default='distmult', help='Choose from dot/distmult/rel')
-    argparser.add_argument('--pooling', type=str, default='cat', help='Choose fro, cat/mean')
+    argparser.add_argument('--pooling', type=str, default='cat', help='Choose fro, cat/mean/last')
 
     # training
     argparser.add_argument('--max_steps', type=int, default=10001, help='Max step number')
